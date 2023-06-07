@@ -1,1 +1,1 @@
-shell baisc task 0
+shell baisc tasks
