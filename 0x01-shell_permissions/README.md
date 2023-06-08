@@ -1,0 +1,1 @@
+shell permissiions basics
