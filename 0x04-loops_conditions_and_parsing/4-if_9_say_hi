@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# this script print "Best School" 10 times using while loop but for the 9th print Hi on a new line
+
+i=1
+
+while [ $i -le 10 ]
+do
+	echo "Best School"
+
+	if [ $i -eq 9 ]
+	then
+		echo "Hi"
+	fi
+
+	((i++))
+done
