@@ -29,6 +29,7 @@ The server is accessible at [bdbnb.site](http://bdbnb.site).
 * **2. Setup a domain name**
   * [2-setup_a_domain_name](./2-setup_a_domain_name): A text file containing
   the domain name set up for the server through Gandi.
+  (example: foobar.tech), no subdomain (example: www.foobar.tech)
 
 * **3. Redirection**
   * [3-redirection](./3-redirection): Bash script that configures a new Ubuntu
