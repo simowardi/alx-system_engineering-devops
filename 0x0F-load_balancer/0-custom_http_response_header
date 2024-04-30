@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Bash script to configure Nginx server with an HTTP header and a redirect rule
+
+# Update package lists
+sudo apt-get update
+
+# Install Nginx
+sudo apt-get -y install nginx
+
+# Start Nginx service
+sudo service nginx start
+
+# Get the hostname of the server
+HOSTNAME=$(hostname)
+
+# Define the lines to be replaced in the Nginx configuration file
+old_line="server_name _;"
+new_line="server_name _;\n        location /redirect_me {\n            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n        }\n        error_page 404 /custom_error.html;\n        add_header X-Served-By $HOSTNAME;\n"
+
+# Modify the Nginx configuration file with the new lines using sed
+sudo sed -i "s|${old_line}|${new_line}|g" /etc/nginx/sites-enabled/default
+
+# Reload Nginx configuration
+sudo service nginx reload
