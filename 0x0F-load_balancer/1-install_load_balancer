@@ -16,12 +16,12 @@ cp /etc/haproxy/haproxy.cfg{,.bak}
 
 
 printf %s "
-frontend http_front
+frontend simowardi.tech
     bind *:80
     mode http
-    default_backend http_back
+    default_backend simowardi.tech_back
 
-backend http_back
+backend simowardi.tech_back
     mode http
     balance roundrobin
     server 455157-web-01 52.91.148.180:80 check
