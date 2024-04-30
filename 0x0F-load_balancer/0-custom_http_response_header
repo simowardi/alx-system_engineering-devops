@@ -10,7 +10,11 @@ rule="\trewrite ^/redirect_me/?$ https://www.youtube.com/watch?v=Kob0G2hE8IY per
 sed -i "s|\(^\tlocation / {\)|$rule\1|" /etc/nginx/sites-enabled/default
 # add 404 page
 echo "Ceci n'est pas une page" > /var/www/html/404.html
+# Ignore SC2154 for the hostname variable
+# shellcheck disable=SC2154
 sed -i "/server_name _;/a \\\\terror_page 404 /404.html;\n" /etc/nginx/sites-enabled/default
 #add custom headers
+# Ignore SC2154 for the hostname variable
+# shellcheck disable=SC2154
 sed -i "/server_name _;/a \\\\tadd_header X-Served-By \$hostname;\n" /etc/nginx/sites-enabled/default
 service nginx reload
