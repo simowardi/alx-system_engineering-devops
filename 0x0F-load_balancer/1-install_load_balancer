@@ -4,26 +4,28 @@
 sudo apt-get update -y
 
 # Install software-properties-common (if not installed) for add-apt-repository
-sudo apt-get install --no-install-recommends software-properties-common -y
+apt-get install -y --no-install-recommends software-properties-common
 
-# Add the HAProxy repository
-sudo add-apt-repository ppa:vbernat/haproxy-2.0 -y
+add-apt-repository -y ppa:vbernat/haproxy-2.6
+apt-get update
+apt-get install -y haproxy=2.6.\*
 
-sudo apt-get install haproxy=2.0.* -y
+echo "ENABLED=1" >> /etc/default/haproxy
 
-echo "ENABLED=1" > /etc/default/haproxy
+cp /etc/haproxy/haproxy.cfg{,.bak}
 
-# Append frontend and backend configuration to haproxy.cfg
-echo "
-frontend myfrontend
+
+printf %s "
+frontend http_front
     bind *:80
     mode http
-    default_backend app
+    default_backend http_back
 
-backend app
+backend http_back
+    mode http
     balance roundrobin
-    server 455157-web-01 52.91.148.180:80 check
-    server 455157-web-02 18.214.87.1:80 check" >> /etc/haproxy/haproxy.cfg
+    server 47730-web-01 54.162.2.155:80 check
+    server 47730-web-02 34.205.65.75:80 check
+" >> /etc/haproxy/haproxy.cfg
 
-# Restart HAProxy service
-sudo service haproxy restart
+service haproxy restart
