@@ -1,0 +1,30 @@
+# Print message indicating updating process.
+echo -e "Updating system...\n"
+
+# Update package lists.
+sudo apt-get update
+
+# Print message indicating UFW installation.
+echo -e "Installing UFW (Uncomplicated Firewall)...\n"
+
+# Install UFW.
+sudo apt-get install -y ufw
+
+# Print message indicating UFW configuration.
+echo -e "Configuring UFW (Uncomplicated Firewall)...\n"
+
+# Allow outgoing traffic and deny incoming traffic by default.
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Allow specific ports.
+sudo ufw allow 22  # SSH
+sudo ufw allow 80  # HTTP
+sudo ufw allow 443 # HTTPS
+
+# Enable the firewall.
+sudo ufw enable
+
+# Print message indicating completion of the process.
+echo -e "Process Completed.\n"
+
