@@ -13,4 +13,3 @@ sudo chmod 644 /etc/nginx/nginx.conf
 sudo sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
 sudo pkill apache2
 sudo service nginx restart
-
