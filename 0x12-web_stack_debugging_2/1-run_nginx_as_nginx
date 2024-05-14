@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Script: 2-configure_nginx.sh
-# Author: [Your Name]
 # Description: A script that configures the container such that
 #              nginx runs as nginx user and listens on all active IPs on port 8080
 # Requirements:

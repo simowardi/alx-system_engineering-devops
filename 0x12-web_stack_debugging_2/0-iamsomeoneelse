@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Script: 0-iamsomeoneelse.sh
-# Author: [Your Name]
 # Description: This Bash script accepts one argument, which is a username. 
 #              It runs the 'whoami' command under the user passed as an argument.
 #              The script utilizes the 'su' command to switch users and execute the command.

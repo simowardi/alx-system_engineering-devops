@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Script: configure_nginx.sh
+# Description: A Bash script to configure the container so that Nginx runs as the nginx user and listens on all active IPs on port 8080.
+#              It modifies Nginx configuration files and starts the Nginx service.
+#              Requirements:
+#                 - Nginx must be running as the nginx user
+#                 - Nginx must be listening on all active IPs on port 8080
+
+sudo sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
+sudo chmod 644 /etc/nginx/nginx.conf
+sudo pkill apache2
+sudo su nginx -c "service nginx start"
