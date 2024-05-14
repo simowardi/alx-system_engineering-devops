@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-# Script: configure_nginx.sh
 # Description: A Bash script to configure the container so that Nginx runs as the nginx user and listens on all active IPs on port 8080.
 #              It modifies Nginx configuration files, sets appropriate permissions, and starts the Nginx service.
 #              Requirements:
@@ -9,15 +7,10 @@
 
 # Modify Nginx configuration to listen on port 8080
 sudo sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
-
 # Set appropriate permissions for nginx.conf
 sudo chmod 644 /etc/nginx/nginx.conf
-
 # Modify Nginx user to run as nginx
 sudo sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
-
-# Stop Apache2 service if running
 sudo pkill apache2
-
-# Restart Nginx service
 sudo service nginx restart
+
