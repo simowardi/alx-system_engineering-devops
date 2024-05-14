@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Script: 0-iamsomeoneelse.sh
+# Author: [Your Name]
+# Description: This Bash script accepts one argument, which is a username. 
+#              It runs the 'whoami' command under the user passed as an argument.
+#              The script utilizes the 'su' command to switch users and execute the command.
+# Usage: ./0-iamsomeoneelse.sh [username]
+#        Replace [username] with the desired user to run 'whoami' under.
+# Example: ./0-iamsomeoneelse.sh www-data
+#          This will output the username 'www-data'.
+
+# Run whoami command under the user passed as an argument.
+
+su "$1" -s /bin/bash -c 'whoami'
