@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # script should run the whoami command under the user passed as an argument and make sure to try your script by passing different users
 sudo sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
+sudo sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
 sudo chmod 644 /etc/nginx/nginx.conf
 sudo pkill apache2
 sudo su nginx -c "service nginx start"
