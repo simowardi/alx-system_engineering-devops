@@ -1,0 +1,31 @@
+# MySQL Configuration File
+
+# Documentation: 
+# This file contains configuration options for the MySQL server.
+# Each directive is explained below.
+
+[mysqld]
+# Path to the process ID file
+pid-file       = /var/run/mysqld/mysqld.pid  
+
+# Path to the Unix socket file
+socket         = /var/run/mysqld/mysqld.sock  
+
+# Path to the MySQL data directory
+datadir        = /var/lib/mysql  
+
+# Path to the error log file
+log-error      = /var/log/mysql/error.log  
+
+# Whether to allow symbolic links; 0 for disabled
+symbolic-links = 0  
+
+# Unique identifier for this MySQL server instance
+server-id      = 1  
+
+# Path to the binary log file
+log_bin        = /var/log/mysql/mysql-bin.log  
+
+# Database to be included in binary logging
+binlog_do_db   = tyrell_corp  
+
