@@ -30,7 +30,7 @@ if __name__ == '__main__':
                 'completed': todo['completed']
             }
             todos_list.append(task_info)
-        
+
         all_todos[str(emp_id)] = todos_list
 
     with open(file_name, mode='w') as json_file:
