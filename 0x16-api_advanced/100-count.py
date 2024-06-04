@@ -1,22 +1,21 @@
 #!/usr/bin/python3
 """
-Script that recursively counts occurrences of given keywords in hot articles
-from a Reddit subreddit.
+Script that recursively counts occurrences of given keywords 
+in hot articles from a Reddit subreddit.
 """
 import requests
 
 
 def count_words(subreddit, word_list, after=None, counts={}):
     """
-    Recursive function that queries the Reddit API, parses the titles of all
+    Recursive function that queries the Reddit API,
+    parses the titles of all
     hot articles, and prints a sorted count of given keywords.
-
     Args:
     subreddit (str): The subreddit to query.
     word_list (list): A list of keywords to count occurrences of.
     after (str): The 'after' parameter for pagination in Reddit API.
     counts (dict): Dictionary to store counts of keywords.
-
     Returns:
     None: If subreddit or word_list is empty or invalid.
     """
@@ -49,9 +48,10 @@ def count_words(subreddit, word_list, after=None, counts={}):
         title = post["data"]["title"].lower()
         # Check each keyword in the word_list
         for word in word_list:
-            # Count occurrences of the keyword in the lowercase title
+            # Count occurrences of keyword in the lowercase title
             if word.lower() in title:
-                counts[word.lower()] = counts.get(word.lower(), 0) + title.count(word.lower())
+                counts[word.lower()] = (counts.get(word.lower(), 0)
+                                        + title.count(word.lower()))
 
     # Get the 'after' parameter for pagination
     after = data["data"]["after"]
@@ -59,7 +59,8 @@ def count_words(subreddit, word_list, after=None, counts={}):
         # Recursively call count_words with updated 'after' parameter
         count_words(subreddit, word_list, after, counts)
     else:
-        # Sort counts by count value (descending) and word (ascending), then print
+        # Sort counts by count value (descending)
+        # and word (ascending), then print
         sorted_counts = sorted(counts.items(),
                                key=lambda x: (-x[1], x[0].lower()))
         for word, count in sorted_counts:
