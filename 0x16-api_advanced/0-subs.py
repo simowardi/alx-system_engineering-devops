@@ -31,3 +31,4 @@ def number_of_subscribers(subreddit):
     else:
         # Return 0 if the subreddit is invalid or request fails
         return 0
+

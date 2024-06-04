@@ -35,3 +35,4 @@ def top_ten(subreddit):
             print(post.get('data', {}).get('title'))
     except (ValueError, KeyError):
         print(None)
+
