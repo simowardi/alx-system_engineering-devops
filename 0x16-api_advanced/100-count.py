@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script that recursively counts occurrences of given keywords 
+Script that recursively counts occurrences of given keywords
 in hot articles from a Reddit subreddit.
 """
 import requests
