@@ -23,9 +23,11 @@ def count_words(subreddit, word_list, after=None, counts={}):
         return
 
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {"User-Agent": "Mozilla/5.0"}
+
+    headers = {"User-Agent": "Mozilla/10.0/API"}
 
     params = {"limit": 100}
+
     if after:
         params["after"] = after
 
@@ -40,21 +42,18 @@ def count_words(subreddit, word_list, after=None, counts={}):
         return
 
     # Parse the JSON response
-    data = response.json()
-    children = data["data"]["children"]
+    main_data = response.json()
+    data = main_data.get('data')
+    children = data.get("children")
 
     # Iterate through each post's title
     for post in children:
-        title = post["data"]["title"].lower()
+        title = post.get('data', {}).get("title").lower()
         # Check each keyword in the word_list
-        for word in word_list:
-            # Count occurrences of keyword in the lowercase title
-            if word.lower() in title:
-                counts[word.lower()] = (counts.get(word.lower(), 0)
-                                        + title.count(word.lower()))
+            counts[word] = counts.get(word, 0) + title.count(word.lower())
 
     # Get the 'after' parameter for pagination
-    after = data["data"]["after"]
+    after = main_data.get('data', {}).get('after')
     if after:
         # Recursively call count_words with updated 'after' parameter
         count_words(subreddit, word_list, after, counts)
@@ -64,4 +63,4 @@ def count_words(subreddit, word_list, after=None, counts={}):
         sorted_counts = sorted(counts.items(),
                                key=lambda x: (-x[1], x[0].lower()))
         for word, count in sorted_counts:
-            print(f"{word}: {count}")
+            print(f"{word.lower()}: {count}")
