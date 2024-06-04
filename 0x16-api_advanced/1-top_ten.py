@@ -21,6 +21,9 @@ def top_ten(subreddit):
     params = {'limit': 10}
     url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
 
+    if response.status_code != 200:
+        return None
+
     response = get(url, headers=user_agent, params=params,
                    allow_redirects=False)
     all_data = response.json()
