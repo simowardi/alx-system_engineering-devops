@@ -16,7 +16,6 @@ def top_ten(subreddit):
     """
     if subreddit is None or not isinstance(subreddit, str):
         print(None)
-        return
 
     user_agent = {'User-agent': 'Mozilla/5.0'}
     params = {'limit': 10}
@@ -24,15 +23,13 @@ def top_ten(subreddit):
 
     response = get(url, headers=user_agent, params=params,
                    allow_redirects=False)
-
-    if response.status_code != 200:
-        print(None)
-        return
+    all_data = response.json()
 
     try:
-        data = response.json().get('data', {}).get('children', [])
-        for post in data:
-            print(post.get('data', {}).get('title'))
-    except (ValueError, KeyError):
-        print(None)
+        raw1 = all_data.get('data').get('children')
 
+        for i in raw1:
+            print(i.get('data').get('title'))
+
+    except:
+        print("None")
