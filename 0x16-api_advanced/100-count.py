@@ -65,18 +65,3 @@ def count_words(subreddit, word_list, after=None, counts={}):
                                key=lambda x: (-x[1], x[0].lower()))
         for word, count in sorted_counts:
             print(f"{word}: {count}")
-
-
-if __name__ == '__main__':
-    import sys
-    # Check if subreddit and word_list are provided via command-line arguments
-    if len(sys.argv) < 3:
-        print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
-        print("Ex: {} programming 'python java javascript'".format(sys.argv[0]))
-    else:
-        # Extract subreddit and word_list from command-line arguments
-        subreddit = sys.argv[1]
-        word_list = sys.argv[2].split()
-        # Call count_words function with subreddit and word_list
-        count_words(subreddit, word_list)
-
